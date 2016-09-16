@@ -16,14 +16,19 @@ class SpiderGetConf(object):
         pass
 
     def getConfig(self):
-        Sections = list()
-        count_section=0
+        Sections = dict()
+        count_section = 0
         for section in self._Sections:
+            count_section += 1
             if section.name == "headers":
-                Sections.append(Section(section.name, dict()))
-                count_section += 1
-                Sections[count_section-1].content.update (
+                Sections.update({section.name: dict()})
+                Sections[section.name].update(
                     {line.split(":")[0].strip(): line.split(":")[1].strip()
+                     for line in section.content})
+            else:
+                Sections.update({section.name: dict()})
+                Sections[section.name].update(
+                    {line.split("=")[0].strip(): line.split("=")[1].strip()
                      for line in section.content})
         return Sections
 
@@ -41,10 +46,8 @@ class SpiderGetConf(object):
                 Sections[count_section - 1].content.append(line)
         return Sections
 
-    def getContent(self):
-        pass
-
 
 if __name__ == "__main__":
-    testconf=SpiderGetConf("conf/first.conf")
+    testconf=SpiderGetConf("conf/firs.conf")
+    print(testconf.getSection())
     print(testconf.getConfig())
