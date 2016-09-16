@@ -14,18 +14,12 @@ class SimpleSpider(object):
         self._ulrlist = "urllist"
         self._nextpage = "nextpage"
         self._method = "method"
-        self._requestsagrs=list()
-        self._requestkwagrs=dict()
+        self._requestsagrs = list()
+        self._requestkwagrs = dict()
 
     def setRequest(self, request):
         if callable(request):
-            def newfun(*a, **kwargs):
-                print(kwargs)
-                self._requestsagrs.extend(*a)
-                self._requestkwagrs.update(**kwargs)
-
-                request(*a, **kwargs)
-            self._requests = newfun
+            self._requests = request
         else:
             pass
 
@@ -38,13 +32,22 @@ class SimpleSpider(object):
     def getHeaders(self):
         return self._headers
 
-    def getContent(self):
-        pass
+    def getContent(self, *a, **k):
+        return self._requests(*a, **k)
+
+    def getBase(self):
+        return self._base
+
+
+def test(*a, **k):
+    print("in old fun")
+    print(a)
+    print(k)
+    return "ok"
 
 
 if __name__ == "__main__":
     spider = SimpleSpider("conf/firs.conf")
     spider.setRequest(requests.get)
-    content = spider.getContent()
-    print(spider.getHeaders())
-    print(content)
+    print(spider.getContent(url=spider.getBase()["url"]).text)
+    # print(content)
