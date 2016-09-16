@@ -8,6 +8,8 @@ progress.log
 *.pyc
 .idea
 
+# pycharm
+.idea/*
 
 
 # ---> Python
@@ -69,3 +71,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# 0days
+main/conf/*.conf
