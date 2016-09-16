@@ -12,7 +12,8 @@ progress.log
 .idea/*
 
 
-# ---> Python
+# Python
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -66,11 +67,40 @@ coverage.xml
 # Django stuff:
 *.log
 
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
 target/
 
+
 # 0days
 main/conf/*
+
+# IPython Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# dotenv
+.env
+
+# virtualenv
+venv/
+ENV/
+
+# Spyder project settings
+.spyderproject
+
