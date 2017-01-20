@@ -15,8 +15,9 @@ class ZhiHuSpider(object):
         self._first_html = self.get_first_html()
         self._current_page = 1
         self._pages = self.get_pages()
-        self._api_content = self.get_api_object()
         self._api_url = api_url
+        self._api_content = self.get_api_object()
+
 
     def get_first_html(self):
         self._html = self._session.get(headers=self._headers, url=self._url).text

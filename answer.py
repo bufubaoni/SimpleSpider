@@ -8,13 +8,18 @@ import pdb
 
 
 class Answers(ZhiHuSpider):
+    def __init__(self, url, api_url):
+        super(Answers, self).__init__(url, api_url)
 
     def get_objects(self):
-        objects = pq(self.get_html())("div.List-item")
+
+        objects = pq(self.get_html())("div#data").attr("data-state")
         return objects
 
     def get_api_objects(self):
-        return loads(self.get_api_object())
+        _objects = loads(self.get_api_object())
+        # print _objects
+        return _objects["data"]
 
 
 if __name__ == "__main__":
@@ -38,5 +43,10 @@ if __name__ == "__main__":
                          "is_nothelp,"
                          "upvoted_followees;"
                          "data[*].author.badge[?(type=best_answerer)].topics&offset=5&limit=15&sort_by=created")
-    print aw.get_objects()
-    # print(len(aw.get_api_objects()))
+    for awid,content in  loads(aw.get_objects())["entities"]["answers"].items():
+        print content["question"]["title"]
+
+    for i in aw.get_objects():
+        print pq(i)("h2>a").text()
+    for i in aw.get_api_objects():
+        print i["question"]["title"]
