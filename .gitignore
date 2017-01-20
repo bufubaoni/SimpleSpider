@@ -104,3 +104,4 @@ ENV/
 # Spyder project settings
 .spyderproject
 
+user_headers.*
