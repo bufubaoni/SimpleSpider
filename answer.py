@@ -42,8 +42,7 @@ if __name__ == "__main__":
                          "is_thanked,"
                          "is_nothelp,"
                          "upvoted_followees;"
-                         "data[*].author.badge[?(type=best_answerer)].topics&offset=5&limit=15&sort_by=created")
-    for awid,content in  loads(aw.get_objects())["entities"]["answers"].items():
-        print content["question"]["title"]
-    for i in aw.get_api_objects():
-        print i["question"]["title"]
+                         "data[*].author.badge[?(type=best_answerer)].topics&offset=20&limit=20&sort_by=created")
+
+    for i, aw in enumerate(aw.get_api_objects()):
+        print "{numb}: {aw}".format(numb=i, aw=aw["question"]["title"].encode("utf8"))
