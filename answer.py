@@ -11,9 +11,6 @@ class Answers(ZhiHuSpider):
     def __init__(self, url):
         super(Answers, self).__init__(url)
 
-    def get_api_objects(self):
-        _objects = self.get_api_object()
-        return _objects
 
 
 if __name__ == "__main__":
@@ -37,5 +34,7 @@ if __name__ == "__main__":
                          "upvoted_followees;"
                          "data[*].author.badge[?(type=best_answerer)].topics&offset={offset}&limit=20&sort_by=created")
 
-    for i, aw in enumerate(aw.get_api_objects()):
-        print "{numb}: {aw}".format(numb=i, aw=aw)
+    for i in aw.get_api_object():
+        print i
+        # for q in i:
+        # print i["question"]["title"]
