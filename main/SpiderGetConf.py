@@ -12,9 +12,6 @@ class SpiderGetConf(object):
         self._file = open(path, "r")
         self._Sections = self.getSection()
 
-    def getFile(self):
-        pass
-
     def getConfig(self):
         Sections = dict()
         count_section = 0
