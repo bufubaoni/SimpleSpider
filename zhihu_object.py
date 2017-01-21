@@ -3,48 +3,38 @@
 # Created by Alex on 2017/1/20
 from requests import Session
 from user_headers import headers
-from pyquery import PyQuery as pq
-import pdb
+from json import loads
 
 
 class ZhiHuSpider(object):
-    def __init__(self, url, api_url):
+    def __init__(self, url):
         self._url = url
         self._headers = headers
         self._session = Session()
-        self._first_html = self.get_first_html()
-        self._current_page = 1
-        self._pages = self.get_pages()
-        self._api_url = api_url
-        self._api_content = self.get_api_object()
+        self._current_numbers = 0
+        self._totals = 0
 
+    def get_content_numbers(self):
+        return self._current_numbers
 
-    def get_first_html(self):
-        self._html = self._session.get(headers=self._headers, url=self._url).text
-        return self._html
-
-    def get_pages(self):
-        _get_pages = pq(self._html)("div.Pagination>button")
-        if _get_pages:
-            return int(_get_pages[-2].text)
-        else:
-            return 1
-
-    def get_next_page_url(self):
-        return self._url + "?page={page}".format(page=self._current_page + 1)
-
-    def get_next_html(self):
-        if self._current_page < self._pages:
-            self._html = self._session.get(headers=self._headers, url=self.get_next_page_url()).text
-            return self._html
-        else:
-            return None
-
-    def get_html(self):
-        return self._html
+    def get_url(self):
+        _url = self._url
+        return _url.format(offset=self.get_content_numbers())
 
     def get_api_object(self):
-        return self._session.get(headers=self._headers, url=self._api_url).text
+        print 1
+        objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
+
+        if not self._totals:
+            self._totals = int(objects["paging"]["totals"])
+
+        self._current_numbers += 20
+        print self._current_numbers
+        if self._current_numbers < self._totals:
+            self.get_api_object()
+        else:
+            yield objects
+        # return objects["data"]
 
 
 if __name__ == "__main__":

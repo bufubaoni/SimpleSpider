@@ -8,23 +8,16 @@ import pdb
 
 
 class Answers(ZhiHuSpider):
-    def __init__(self, url, api_url):
-        super(Answers, self).__init__(url, api_url)
-
-    def get_objects(self):
-
-        objects = pq(self.get_html())("div#data").attr("data-state")
-        return objects
+    def __init__(self, url):
+        super(Answers, self).__init__(url)
 
     def get_api_objects(self):
-        _objects = loads(self.get_api_object())
-        # print _objects
-        return _objects["data"]
+        _objects = self.get_api_object()
+        return _objects
 
 
 if __name__ == "__main__":
-    aw = Answers(url="https://www.zhihu.com/people/chen-er-bai-18/answers",
-                 api_url="https://www.zhihu.com/api/v4/members/chen-er-bai-18/answers?"
+    aw = Answers(url="https://www.zhihu.com/api/v4/members/chen-er-bai-18/answers?"
                          "include=data[*].is_normal,"
                          "suggest_edit,"
                          "comment_count,"
@@ -42,7 +35,7 @@ if __name__ == "__main__":
                          "is_thanked,"
                          "is_nothelp,"
                          "upvoted_followees;"
-                         "data[*].author.badge[?(type=best_answerer)].topics&offset=20&limit=20&sort_by=created")
+                         "data[*].author.badge[?(type=best_answerer)].topics&offset={offset}&limit=20&sort_by=created")
 
     for i, aw in enumerate(aw.get_api_objects()):
-        print "{numb}: {aw}".format(numb=i, aw=aw["question"]["title"].encode("utf8"))
+        print "{numb}: {aw}".format(numb=i, aw=aw)
