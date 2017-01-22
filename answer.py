@@ -35,6 +35,5 @@ if __name__ == "__main__":
                          "data[*].author.badge[?(type=best_answerer)].topics&offset={offset}&limit=20&sort_by=created")
 
     for i in aw.get_api_object():
-        print i
-        # for q in i:
-        # print i["question"]["title"]
+        print i["question"]["title"]
+

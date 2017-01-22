@@ -25,12 +25,11 @@ class ZhiHuSpider(object):
         if not self._totals:
             self._totals = int(objects["paging"]["totals"])
 
-        self._current_numbers += 20
-        print self._current_numbers
-        if self._current_numbers < self._totals:
-            self.get_api_object()
-
-        yield objects["data"]
+        while self._current_numbers < self._totals:
+            for item in objects["data"]:
+                yield item
+            objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
+            self._current_numbers += 20
 
 
 if __name__ == "__main__":
