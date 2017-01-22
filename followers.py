@@ -7,7 +7,7 @@ from zhihu_object import ZhiHuSpider
 class Followers(ZhiHuSpider):
     def __init__(self,url_token):
         # chen-er-bai-18
-        self._url = ("https://www.zhihu.com/api/v4/members/{name}/followers?"
+        self._url = ("https://www.zhihu.com/api/v4/members/{url_token}/followers?"
                      "include=data[*].answer_count,"
                      "articles_count,"
                      "follower_count,"
@@ -17,7 +17,7 @@ class Followers(ZhiHuSpider):
         super(Followers, self).__init__(self._url, url_token)
 
 if __name__ == "__main__":
-    flers = Followers(url_token="chen-er-bai-18")
+    flers = Followers(url_token="xiao-yu-32-73")
 
     for i in flers.get_api_object():
         print i["name"], i["url_token"]

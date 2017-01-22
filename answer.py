@@ -6,7 +6,7 @@ from zhihu_object import ZhiHuSpider
 
 class Answers(ZhiHuSpider):
     def __init__(self, url_token):
-        self._url = ("https://www.zhihu.com/api/v4/members/{name}/answers?"
+        self._url = ("https://www.zhihu.com/api/v4/members/{url_token}/answers?"
                      "include=data[*].is_normal,"
                      "suggest_edit,"
                      "comment_count,"
