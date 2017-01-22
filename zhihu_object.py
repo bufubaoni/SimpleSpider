@@ -17,7 +17,7 @@ class ZhiHuSpider(object):
 
     def get_url(self):
         _url = self._url
-        return _url.format(offset=self._current_numbers, name=self._url_token)
+        return _url.format(offset=self._current_numbers, url_token=self._url_token)
 
     def get_api_object(self):
         objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)

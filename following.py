@@ -5,7 +5,7 @@ from zhihu_object import ZhiHuSpider
 
 
 class Following(ZhiHuSpider):
-    def __init__(self,url_token):
+    def __init__(self, url_token):
         # chen-er-bai-18
         self._url = ("https://www.zhihu.com/api/v4/members/{url_token}/followees?"
                      "include=data[*].answer_count,"
