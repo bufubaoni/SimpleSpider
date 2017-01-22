@@ -20,4 +20,4 @@ if __name__ == "__main__":
     fling = Following(name="chen-er-bai-18")
 
     for i in fling.get_api_object():
-        print i["name"]
+        print i["name"].encode("utf8"), i["url_token"]
