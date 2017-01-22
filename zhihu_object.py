@@ -7,9 +7,9 @@ from json import loads
 
 
 class ZhiHuSpider(object):
-    def __init__(self, url, name):
+    def __init__(self, url, url_token):
         self._url = url
-        self._name = name
+        self._url_token = url_token
         self._headers = headers
         self._session = Session()
         self._current_numbers = 0
@@ -17,7 +17,7 @@ class ZhiHuSpider(object):
 
     def get_url(self):
         _url = self._url
-        return _url.format(offset=self._current_numbers, name=self._name)
+        return _url.format(offset=self._current_numbers, name=self._url_token)
 
     def get_api_object(self):
         objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)

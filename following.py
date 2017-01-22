@@ -5,19 +5,19 @@ from zhihu_object import ZhiHuSpider
 
 
 class Following(ZhiHuSpider):
-    def __init__(self,name):
+    def __init__(self,url_token):
         # chen-er-bai-18
-        self._url = ("https://www.zhihu.com/api/v4/members/{name}/followees?"
+        self._url = ("https://www.zhihu.com/api/v4/members/{url_token}/followees?"
                      "include=data[*].answer_count,"
                      "articles_count,"
                      "follower_count,"
                      "is_followed,"
                      "is_following,"
                      "badge[?(type=best_answerer)].topics&offset={offset}&limit=20")
-        super(Following, self).__init__(self._url, name)
+        super(Following, self).__init__(self._url, url_token)
 
 if __name__ == "__main__":
-    fling = Following(name="chen-er-bai-18")
+    fling = Following(url_token="chen-er-bai-18")
 
     for i in fling.get_api_object():
         print i["name"].encode("utf8"), i["url_token"]
