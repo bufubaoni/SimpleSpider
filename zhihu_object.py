@@ -7,17 +7,17 @@ from json import loads
 
 
 class ZhiHuSpider(object):
-    def __init__(self, url):
+    def __init__(self, url, name):
         self._url = url
+        self._name = name
         self._headers = headers
         self._session = Session()
         self._current_numbers = 0
         self._totals = 0
 
-
     def get_url(self):
         _url = self._url
-        return _url.format(offset=self._current_numbers)
+        return _url.format(offset=self._current_numbers, name=self._name)
 
     def get_api_object(self):
         objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
@@ -28,8 +28,8 @@ class ZhiHuSpider(object):
         while self._current_numbers < self._totals:
             for item in objects["data"]:
                 yield item
-            objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
             self._current_numbers += 20
+            objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
 
 
 if __name__ == "__main__":
