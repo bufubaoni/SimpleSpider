@@ -15,3 +15,9 @@ for use it ,you should create a file named **user_headers.py**
         'Cookie': 'your cookies'
     }
     ```
+
+    ```ruby
+    require 'redcarpet'
+    markdown = Redcarpet.new("Hello World!")
+    puts markdown.to_html
+    ```
