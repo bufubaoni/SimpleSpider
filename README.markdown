@@ -4,6 +4,7 @@ Simple Spider for zhihu in china
 
 for use it ,you should create a file named **user_headers.py**
 
+    ```python
     # the content of browser's headers,in you login zhihu
     headers = {
         'Accept-Language': 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
@@ -13,3 +14,4 @@ for use it ,you should create a file named **user_headers.py**
         'Connection': 'keep-alive',
         'Cookie': 'your cookies'
     }
+    ```
