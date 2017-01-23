@@ -108,3 +108,4 @@ ENV/
 user_headers.py
 scheduler.py
 database/
+model/*
