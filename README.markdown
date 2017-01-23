@@ -2,7 +2,7 @@
 
 Simple Spider for zhihu in china
 
-for use it ,you should create a file named user_headers.py
+for use it ,you should create a file named **user_headers.py**
 
     # the content of browser's headers,in you login zhihu
     headers = {
