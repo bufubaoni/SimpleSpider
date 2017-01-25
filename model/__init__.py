@@ -10,7 +10,8 @@ db.define_table("followers",
                 Field("url_token"),
                 Field("follower_count"),
                 Field("articles_count"),
-                Field("answer_count"))
+                Field("answer_count"),
+                Field("content"))
 
 db.define_table("following",
                 Field("name"),
