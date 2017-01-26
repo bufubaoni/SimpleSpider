@@ -34,6 +34,5 @@ class VotersProfile(ZhiHuSpider):
 
 if __name__ == "__main__":
     vt = VotersProfile(13268354)
-    # print vt.get_url()
     for i, item in enumerate(vt.get_api_object()):
         print i, item

@@ -16,6 +16,7 @@ headers = {
     'Accept-Encoding': 'gzip, deflate, br',
     'Origin': 'https://www.zhihu.com',
     'Connection': 'keep-alive',
+    'X-Xsrftoken': 'your xsrf token',
     'Cookie': 'your cookies'
 }
 ```

@@ -35,7 +35,7 @@ class Question(ZhiHuSpider):
                 content = _item("div.zm-item-rich-text>div.zm-editable-content.clearfix")
                 anwser_info = _item("div.zm-item-answer-author-info>span>span>a.author-link")
                 yield dict(anwser_id=anwser.attr("data-atoken"),
-                           voteup_count=int(pq(vote_info)("span.count").text()),
+                           voteup_count=int(pq(vote_info)("span.count").text())if pq(vote_info)("span.count").text() else 0,
                            content=content.text(),
                            anwser_info=dict(url_token=anwser_info.attr("href").split("/")[-1] if anwser_info else None,
                                             name=anwser_info.text()))
@@ -44,6 +44,6 @@ class Question(ZhiHuSpider):
             objects = loads(self._session.post(headers=self._headers, data=self.get_data(),url=self.get_url()).text)
 
 if __name__ == "__main__":
-    qus = Question(29138020)
+    qus = Question(36338520)
     for item in qus.get_api_object():
         print item
