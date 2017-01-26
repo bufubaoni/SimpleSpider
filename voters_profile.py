@@ -15,7 +15,7 @@ class VotersProfile(ZhiHuSpider):
         _url = self._url
         return _url.format(offset=self._current_numbers,
                            url_token=self._url_token,
-                           total=self._totals if self._totals else 10)
+                           total=self._totals)
 
     def get_api_object(self):
         objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
@@ -33,7 +33,7 @@ class VotersProfile(ZhiHuSpider):
             objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
 
 if __name__ == "__main__":
-    vt = VotersProfile(44377512)
-    print vt.get_url()
+    vt = VotersProfile(13268354)
+    # print vt.get_url()
     for i, item in enumerate(vt.get_api_object()):
         print i, item
