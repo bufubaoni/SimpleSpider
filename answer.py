@@ -11,11 +11,6 @@ class Answers(ZhiHuSpider):
     def __init__(self, url, api_url):
         super(Answers, self).__init__(url, api_url)
 
-    def get_objects(self):
-
-        objects = pq(self.get_html())("div#data").attr("data-state")
-        return objects
-
     def get_api_objects(self):
         _objects = loads(self.get_api_object())
         # print _objects
