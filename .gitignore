@@ -104,4 +104,8 @@ ENV/
 # Spyder project settings
 .spyderproject
 
+# private file
 user_headers.py
+scheduler.py
+database/
+model/*
