@@ -20,6 +20,7 @@ class ZhiHuSpider(object):
         return _url.format(offset=self._current_numbers, url_token=self._url_token)
 
     def get_api_object(self):
+
         objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
 
         if not self._totals:
@@ -30,6 +31,7 @@ class ZhiHuSpider(object):
                 yield item
             self._current_numbers += 20
             objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
+
 
 
 if __name__ == "__main__":
