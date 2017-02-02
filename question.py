@@ -37,13 +37,13 @@ class Question(ZhiHuSpider):
                 yield dict(anwser_id=anwser.attr("data-atoken"),
                            voteup_count=int(pq(vote_info)("span.count").text())if pq(vote_info)("span.count").text() else 0,
                            content=content.text(),
-                           anwser_info=dict(url_token=anwser_info.attr("href").split("/")[-1] if anwser_info else None,
+                           user_info=dict(url_token=anwser_info.attr("href").split("/")[-1] if anwser_info else None,
                                             name=anwser_info.text()))
 
             self._current_numbers += 10
             objects = loads(self._session.post(headers=self._headers, data=self.get_data(),url=self.get_url()).text)
 
 if __name__ == "__main__":
-    qus = Question(36338520)
+    qus = Question(55314097)
     for item in qus.get_api_object():
         print item
