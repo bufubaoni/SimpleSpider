@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 # Created by Alex on 2017/1/26
 from zhihu_object import ZhiHuSpider
-from json import loads,dumps
+from json import loads, dumps
 from pyquery import PyQuery as pq
+
+
 class Question(ZhiHuSpider):
     def __init__(self, question_id):
         self._url = "https://www.zhihu.com/node/QuestionAnswerListV2"
