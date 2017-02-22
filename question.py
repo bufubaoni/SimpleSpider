@@ -25,7 +25,7 @@ class Question(ZhiHuSpider):
         objects = pq(self._session.get(headers=self._headers, url=self._html_url.format(url_token=self._url_token)).text)
 
         if not self._totals:
-            self._totals = int(objects("h3#zh-question-answer-num").attr("data-num"))
+            self._totals = int(objects("h4.List-headerText").text().split(" ")[0])
         objects = loads(self._session.post(headers=self._headers, data=self.get_data(), url=self.get_url()).text)
         while self._current_numbers < self._totals:
             for item in objects["msg"]:
