@@ -46,6 +46,6 @@ class Question(ZhiHuSpider):
             objects = loads(self._session.post(headers=self._headers, data=self.get_data(),url=self.get_url()).text)
 
 if __name__ == "__main__":
-    qus = Question(55314097)
+    qus = Question(35104003)
     for item in qus.get_api_object():
-        print item
+        print dumps(item,ensure_ascii=False)
