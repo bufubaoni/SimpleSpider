@@ -5,7 +5,8 @@ from zhihu_object import ZhiHuSpider
 
 class FollowingTopic(ZhiHuSpider):
     def __init__(self,url_token):
-        self._url = ("https://www.zhihu.com/api/v4/members/{url_token}/following-topic-contributions?"
+        self._url = ("https://www.zhihu.com/api/v4/members/{url_token}/"
+                     "following-topic-contributions?"
                      "include=data[*].topic.introduction"
                      "&offset={offset}"
                      "&limit=20")
