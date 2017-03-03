@@ -5,7 +5,7 @@ from requests import Session
 from user_headers import headers
 from json import loads
 import gevent
-import pdb
+
 
 class ZhiHuSpider(object):
     def __init__(self, url, url_token):
@@ -41,7 +41,6 @@ class ZhiHuSpider(object):
     def _requests(self, url_number):
         gevent.sleep(0)
         return loads(self._session.get(headers=self._headers, url=self.get_url(url_number)).text)
-
 
 
 if __name__ == "__main__":
