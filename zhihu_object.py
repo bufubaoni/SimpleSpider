@@ -4,7 +4,8 @@
 from requests import Session
 from user_headers import headers
 from json import loads
-
+import gevent
+import pdb
 
 class ZhiHuSpider(object):
     def __init__(self, url, url_token):
@@ -15,22 +16,31 @@ class ZhiHuSpider(object):
         self._current_numbers = 0
         self._totals = 0
 
-    def get_url(self):
+    def get_url(self, current_number):
         _url = self._url
-        return _url.format(offset=self._current_numbers, url_token=self._url_token)
+        return _url.format(offset=current_number, url_token=self._url_token)
 
     def get_api_object(self):
 
-        objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
+        objects = self._requests(self._current_numbers)
 
         if not self._totals:
             self._totals = int(objects["paging"]["totals"])
+        jobs = list()
+        for item in objects["data"]:
+            yield item
 
         while self._current_numbers < self._totals:
-            for item in objects["data"]:
-                yield item
             self._current_numbers += 20
-            objects = loads(self._session.get(headers=self._headers, url=self.get_url()).text)
+            jobs.append(gevent.spawn(self._requests, self._current_numbers))
+        gevent.joinall(jobs)
+        for job in jobs:
+            for item in job.value["data"]:
+                yield item
+
+    def _requests(self, url_number):
+        gevent.sleep(0)
+        return loads(self._session.get(headers=self._headers, url=self.get_url(url_number)).text)
 
 
 
