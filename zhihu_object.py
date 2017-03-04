@@ -39,8 +39,8 @@ class ZhiHuSpider(object):
                 yield item
 
     def _requests(self, url_number):
-        gevent.sleep(0)
-        return loads(self._session.get(headers=self._headers, url=self.get_url(url_number)).text)
+        response = self._session.get(headers=self._headers, url=self.get_url(url_number)).text
+        return loads(response)
 
 
 if __name__ == "__main__":
