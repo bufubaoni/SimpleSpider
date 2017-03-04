@@ -40,7 +40,7 @@ class Question(ZhiHuSpider):
         super(Question, self).__init__(self._url, url_token)
 
 if __name__ == "__main__":
-    qus = Question(35104003)
-    for item in qus.get_api_object():
-        print item
+    qus = Question(50258333)
+    for i, item in enumerate(qus.get_api_object()):
+        print i, item
 
