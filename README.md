@@ -2,6 +2,14 @@
 
 Simple Spider for zhihu in china
 
+Lib use :
+> requests
+> gevent
+
+You can use `pip` to install:
+> pip install requests
+> pip install gevent
+
 for use it ,you should create a file named **user_headers.py**
 
 ### user_headers.py
@@ -38,4 +46,5 @@ the same `following.py`, `question_api.py`, `voter_profile.py`, `comments.py`, `
 the `question.py` use old api it return html then parse pyquery.
 
 use `gevent` improve efficiency becouse Coroutines.
+
 
