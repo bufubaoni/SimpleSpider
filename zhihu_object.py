@@ -5,6 +5,8 @@ from requests import Session
 from user_headers import headers
 from json import loads
 import gevent
+from gevent import monkey
+monkey.patch_all()
 
 
 class ZhiHuSpider(object):
