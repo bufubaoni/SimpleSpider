@@ -45,7 +45,8 @@ class ZhiHuSpider(object):
                 yield item
 
     def _requests(self, url_number):
-        response = self._session.get(headers=self._headers, url=self.get_url(url_number)).text
+        response = self._session.get(headers=self._headers,
+                                     url=self.get_url(url_number)).text
         return loads(response)
 
 

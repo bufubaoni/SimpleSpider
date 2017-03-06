@@ -33,7 +33,7 @@ if you want get someone followers
 
 you can use it for this:
 
-'''python
+```python
 from followers import Followers
 
 flers = Followers(url_token="chen-er-bai-18")
