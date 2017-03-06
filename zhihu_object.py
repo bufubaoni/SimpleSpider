@@ -28,14 +28,18 @@ class ZhiHuSpider(object):
 
         if not self._totals:
             self._totals = int(objects["paging"]["totals"])
-        jobs = list()
+
         for item in objects["data"]:
             yield item
+
+        jobs = list()
 
         while self._current_numbers < self._totals:
             self._current_numbers += 20
             jobs.append(gevent.spawn(self._requests, self._current_numbers))
+
         gevent.joinall(jobs)
+
         for job in jobs:
             for item in job.value["data"]:
                 yield item
