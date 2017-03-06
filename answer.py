@@ -31,7 +31,7 @@ class Answers(ZhiHuSpider):
 
 
 if __name__ == "__main__":
-    aw = Answers(url_token="mingxinglai")
+    aw = Answers(url_token="chen-er-bai-18")
 
     for i in aw.get_api_object():
         print i["question"]["title"]

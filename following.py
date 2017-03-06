@@ -17,7 +17,7 @@ class Following(ZhiHuSpider):
         super(Following, self).__init__(self._url, url_token)
 
 if __name__ == "__main__":
-    fling = Following(url_token="xlzd")
+    fling = Following(url_token="chen-er-bai-18")
 
     for i in fling.get_api_object():
         print i["name"], i["url_token"]
