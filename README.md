@@ -4,10 +4,12 @@ Simple Spider for zhihu in china
 
 Lib use :
 > requests
+
 > gevent
 
 You can use `pip` to install:
 > pip install requests
+
 > pip install gevent
 
 for use it ,you should create a file named **user_headers.py**
