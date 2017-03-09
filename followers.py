@@ -17,7 +17,7 @@ class Followers(ZhiHuSpider):
         super(Followers, self).__init__(self._url, url_token)
 
 if __name__ == "__main__":
-    flers = Followers(url_token="chen-er-bai-18")
+    flers = Followers(url_token="da-da-de-hu")
 
     for i in flers.get_api_object():
         print i["name"], i["url_token"]

@@ -9,6 +9,15 @@ from gevent import monkey
 monkey.patch_all()
 
 
+class AuthorExcept(Exception):
+    def __init__(self, value):
+        self.value = value
+    
+    def __str__(self):
+        return self.value
+
+
+
 class ZhiHuSpider(object):
     def __init__(self, url, url_token):
         self._url = url
@@ -17,6 +26,11 @@ class ZhiHuSpider(object):
         self._session = Session()
         self._current_numbers = 0
         self._totals = 0
+    
+    try:
+        pass
+    except expression as identifier:
+        pass
 
     def get_url(self, current_number):
         _url = self._url
@@ -47,9 +61,14 @@ class ZhiHuSpider(object):
                 yield item
 
     def _requests(self, url_number):
+        
         response = self._session.get(headers=self._headers,
-                                     url=self.get_url(url_number)).text
-        return loads(response)
+                                     url=self.get_url(url_number))
+        
+        if response.ok:
+            return loads(response.text)
+        else:
+            response.raise_for_status()
 
 
 if __name__ == "__main__":
