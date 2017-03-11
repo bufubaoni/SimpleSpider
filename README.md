@@ -31,6 +31,8 @@ headers = {
 }
 ```
 
+you will find cookie press `f12` when you use Firefox. `X-Xsrftoken` you can delete this key.
+
 if you want get someone followers
 
 you can use it for this:
@@ -48,5 +50,6 @@ the same `following.py`, `question_api.py`, `voter_profile.py`, `comments.py`, `
 the `question.py` use old api it return html then parse pyquery.
 
 use `gevent` improve efficiency becouse Coroutines.
+
 
 
