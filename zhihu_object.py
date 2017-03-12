@@ -9,15 +9,6 @@ from gevent import monkey
 monkey.patch_all()
 
 
-class AuthorExcept(Exception):
-    def __init__(self, value):
-        self.value = value
-    
-    def __str__(self):
-        return self.value
-
-
-
 class ZhiHuSpider(object):
     def __init__(self, url, url_token):
         self._url = url
