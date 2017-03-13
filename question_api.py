@@ -44,5 +44,5 @@ if __name__ == "__main__":
     import time
     time.time()
     for i, item in enumerate(qus.get_api_object()):
-        print i, item
+        print i, item["id"]
 

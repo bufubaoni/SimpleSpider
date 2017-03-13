@@ -17,20 +17,13 @@ class ZhiHuSpider(object):
         self._session = Session()
         self._current_numbers = 0
         self._totals = 0
-    
-    try:
-        pass
-    except expression as identifier:
-        pass
 
     def get_url(self, current_number):
         _url = self._url
         _current_numb = self._current_numbers
-        print _current_numb
         return _url.format(offset=current_number, url_token=self._url_token)
 
     def get_api_object(self):
-
         objects = self._requests(self._current_numbers)
 
         if not self._totals:
@@ -39,11 +32,8 @@ class ZhiHuSpider(object):
         for item in objects["data"]:
             yield item
 
-        jobs = list()
-
-        while self._current_numbers < self._totals:
-            self._current_numbers += 20
-            jobs.append(gevent.spawn(self._requests, self._current_numbers))
+        jobs = [gevent.spawn(self._requests, numb_offet)
+                    for numb_offet in range(self._current_numbers, self._totals, 20)]
 
         gevent.joinall(jobs)
 
@@ -52,7 +42,6 @@ class ZhiHuSpider(object):
                 yield item
 
     def _requests(self, url_number):
-        
         response = self._session.get(headers=self._headers,
                                      url=self.get_url(url_number))
         
