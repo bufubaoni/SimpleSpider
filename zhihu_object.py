@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+·#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Created by Alex on 2017/1/20
 from requests import Session
@@ -20,7 +20,6 @@ class ZhiHuSpider(object):
 
     def get_url(self, current_number):
         _url = self._url
-        _current_numb = self._current_numbers
         return _url.format(offset=current_number, url_token=self._url_token)
 
     def get_api_object(self):
